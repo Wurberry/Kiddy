@@ -8,9 +8,11 @@
 #include "BaseGameInstance.generated.h"
 
 
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnListItemFruitVegeClick, int, ID, bool, IsDark);
 DECLARE_LOG_CATEGORY_EXTERN(LogKiddy, Log, All);
 
+class UAttentionWidget;
 class UImage;
 class UKiddyMainMenu;
 class AGamePlayerHUD;
@@ -41,6 +43,18 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "KiddyGameInstance|UI")
 	void LoadMainMenuWidget();
+
+	/////////////////
+	// Settings system
+
+	UFUNCTION()
+	void SetDarkMode(bool IsChecked);
+
+	UFUNCTION()
+	void SetEyeProtect(bool IsChecked);
+
+	UFUNCTION()
+	void ShowAttention();
 	
 	/////////////////
 	// Blueprint references, to be set in editor on defaults
@@ -50,7 +64,9 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI class set")
 	TSubclassOf<UUserWidget> GameHUDClass;
-	
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI class set")
+	TSubclassOf<UAttentionWidget> AttentionClass;
 	
 	/////////////////
 	// UI Getters
@@ -61,6 +77,12 @@ public:
 	// Delegates
 
 	FOnListItemFruitVegeClick OnListItemFruitVegeClick;
+
+	
+	/////////////////
+	// Getters
+
+	bool GetIsEyeProtect() {return this->IsEyeProtectActive;}
 	
 protected:
 
@@ -73,4 +95,21 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI settings")
 	AGamePlayerHUD* GamePlayerHUD;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI settings")
+	UAttentionWidget* AttentionWidget;
+	
+private:
+	
+	/////////////////
+	// Settings system
+
+	UFUNCTION()
+	void BlockEyeProtect();
+	
+	UFUNCTION()
+	void ClearEyeProtect();
+
+	FTimerHandle TimerOnEyeProtect;
+
+	bool IsEyeProtectActive = false;
 };

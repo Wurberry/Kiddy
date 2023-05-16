@@ -7,6 +7,9 @@
 #include "SettingsWidget.generated.h"
 
 
+class UComboBoxString;
+class UCheckBox;
+
 /**
  * 
  */
@@ -17,6 +20,25 @@ class KIDDY_API USettingsWidget : public UBaseHUDWidget
 
 public:
 	
-	void NativeConstruct() override;
+	UFUNCTION()
+	void SetDarkModeInstance(bool IsChecked);
+
+	UFUNCTION()
+	void SetEyeProtectInstance(bool IsChecked);
 	
+	UPROPERTY(VisibleAnywhere, meta = (BindWidget))
+	UCheckBox* ChBEyeProtect;
+	
+	UPROPERTY(VisibleAnywhere, meta = (BindWidget))
+	UCheckBox* ChBDarkMode;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, meta = (BindWidget))
+	UComboBoxString* CBColorBlinding;
+
+protected:
+	
+	UFUNCTION()
+	virtual void NativeConstruct() override;
+
+
 };

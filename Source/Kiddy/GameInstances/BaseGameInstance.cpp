@@ -5,9 +5,11 @@
 
 #include "BaseMenuWidget.h"
 #include "KiddyMainMenu.h"
+#include "Attention/AttentionWidget.h"
 #include "Blueprint/UserWidget.h"
 #include "Chaos/ChaosPerfTest.h"
 #include "GameFramework/GameUserSettings.h"
+#include "Kismet/GameplayStatics.h"
 
 DEFINE_LOG_CATEGORY(LogKiddy);
 
@@ -69,7 +71,7 @@ void UBaseGameInstance::LoadMainMenu()
 	APlayerController* PlayerController = GetFirstLocalPlayerController();
 	if(!ensure(PlayerController)) return;
 
-	// Load level with menu
+	UGameplayStatics::OpenLevel(GetWorld(), "BaseMenu");
 	
 }
 
@@ -88,5 +90,45 @@ void UBaseGameInstance::LoadMainMenuWidget()
 
 	// MenuWidget->SetMenuInterface(this);
 	
+}
+
+void UBaseGameInstance::SetDarkMode(bool IsChecked)
+{
+	
+}
+
+void UBaseGameInstance::SetEyeProtect(bool IsChecked)
+{
+	if(IsChecked)
+	{
+		GetWorld()->GetTimerManager().SetTimer(TimerOnEyeProtect,this, &UBaseGameInstance::BlockEyeProtect, 5, false);
+	}
+	else
+	{
+		GetWorld()->GetTimerManager().ClearTimer(TimerOnEyeProtect);
+	}
+}
+
+void UBaseGameInstance::ShowAttention()
+{
+	if (!ensure(AttentionClass)) return;
+
+	AttentionWidget = CreateWidget<UAttentionWidget>(this, AttentionClass);
+	AttentionWidget->AddToViewport(5);
+	
+}
+
+
+void UBaseGameInstance::BlockEyeProtect()
+{
+	IsEyeProtectActive = true;
+	ShowAttention();
+}
+
+void UBaseGameInstance::ClearEyeProtect()
+{
+	IsEyeProtectActive = false;
+
+	UE_LOG(LogTemp, Display, TEXT("BLOCK EYE PROTECT DEACTIVATE!"));
 }
 
