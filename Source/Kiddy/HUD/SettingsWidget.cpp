@@ -1,5 +1,4 @@
 ﻿#include "SettingsWidget.h"
-
 #include "Components/CheckBox.h"
 #include "Components/ComboBoxString.h"
 #include "Kiddy/GameInstances/BaseGameInstance.h"

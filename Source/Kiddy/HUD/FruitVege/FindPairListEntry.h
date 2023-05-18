@@ -1,4 +1,4 @@
-﻿// © 2023 Evstigneev Daniil. All Rights Reserved.
+// © 2023 Evstigneev Daniil. All Rights Reserved.
 
 #pragma once
 
@@ -7,7 +7,7 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/Image.h"
 #include "Kiddy/DataTables/FruitVegeDataTable.h"
-#include "FruitVegeListEntry.generated.h"
+#include "FindPairListEntry.generated.h"
 
 struct FFruitVege;
 class UBaseGameInstance;
@@ -19,9 +19,9 @@ class AFruitVegeDataTable;
  * 
  */
 UCLASS()
-class KIDDY_API UFruitVegeListEntry : public UUserWidget, public IUserObjectListEntry
+class KIDDY_API UFindPairListEntry : public UUserWidget, public IUserObjectListEntry
 {
-	
+
 public:
 	
 	UPROPERTY(meta=(BindWidget))
@@ -42,11 +42,14 @@ public:
 	UFUNCTION()
 	void Init(FFruitVege FruitVege);
 
-	UFUNCTION()
-	void SetActive();
-	
-	UFUNCTION()
-	void ClearActive();
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidgetAnim), Transient)
+	UWidgetAnimation* OpenImg;
+
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidgetAnim), Transient)
+	UWidgetAnimation* CloseImg;
+
+	UPROPERTY(BlueprintReadWrite, meta=(BindWidget))
+	UButton* BtnImage;
 	
 protected:
 	
@@ -54,9 +57,6 @@ protected:
 	virtual void NativeOnInitialized() override;
 	
 	virtual void NativeOnListItemObjectSet(UObject* ListItemObject) override;
-
-	UPROPERTY(BlueprintReadWrite, meta=(BindWidget))
-	UButton* BtnImage;
 
 private:
 
@@ -67,4 +67,3 @@ private:
 	UBaseGameInstance* GameInstance;
 	
 };
-

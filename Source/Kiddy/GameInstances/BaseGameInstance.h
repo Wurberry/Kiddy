@@ -1,4 +1,4 @@
-// © 2023 Evstigneev Daniil. All Rights Reserved.
+﻿// © 2023 Evstigneev Daniil. All Rights Reserved.
 
 #pragma once
 
@@ -9,7 +9,7 @@
 
 
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnListItemFruitVegeClick, int, ID, bool, IsDark);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnListItemFruitVegeClick, int, ID, bool, IsDark, UObject*, Object);
 DECLARE_LOG_CATEGORY_EXTERN(LogKiddy, Log, All);
 
 class UAttentionWidget;
@@ -48,13 +48,13 @@ public:
 	// Settings system
 
 	UFUNCTION()
-	void SetDarkMode(bool IsChecked);
+	void SetDarkMode(bool IsNeeded);
 
 	UFUNCTION()
 	void SetEyeProtect(bool IsChecked);
 
 	UFUNCTION()
-	void ShowAttention();
+	void ShowAttention(FString NewText);
 	
 	/////////////////
 	// Blueprint references, to be set in editor on defaults
@@ -83,6 +83,8 @@ public:
 	// Getters
 
 	bool GetIsEyeProtect() {return this->IsEyeProtectActive;}
+
+	bool GetIsDarkMode() {return this->IsDarkModeActive;}
 	
 protected:
 
@@ -109,7 +111,20 @@ private:
 	UFUNCTION()
 	void ClearEyeProtect();
 
+	UFUNCTION()
+	void BlockDarkMode();
+
+	UFUNCTION()
+	void ClearDarkModeProtect();
+	
 	FTimerHandle TimerOnEyeProtect;
+	
+	FTimerHandle TimerDarkMode;
 
 	bool IsEyeProtectActive = false;
+
+	int EyeProtectRateDuration = 5;
+
+	bool IsDarkModeActive = false;
+	
 };

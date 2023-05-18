@@ -1,4 +1,4 @@
-// © 2023 Evstigneev Daniil. All Rights Reserved.
+﻿// © 2023 Evstigneev Daniil. All Rights Reserved.
 
 #pragma once
 

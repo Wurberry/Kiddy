@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding" addBOMForNewFiles="with BOM under Windows, with no BOM otherwise" />
+  <component name="Encoding" addBOMForNewFiles="with BOM under Windows, with no BOM otherwise">
+    <file url="file://$PROJECT_DIR$/Source/Kiddy/DataTables/FruitVegeDataTable.cpp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Source/Kiddy/DataTables/FruitVegeDataTable.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Source/Kiddy/HUD/Attention/AttentionWidget.cpp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Source/Kiddy/HUD/Attention/AttentionWidget.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Source/Kiddy/HUD/FruitVege/FindPairListEntry.cpp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Source/Kiddy/HUD/FruitVege/FindPairListEntry.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Source/Kiddy/HUD/FruitVege/FruitVegeListEntry.cpp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Source/Kiddy/HUD/FruitVege/FruitVegeListEntry.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Source/Kiddy/HUD/GameLevels/ChooseShadowWidget.cpp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Source/Kiddy/HUD/GameLevels/ChooseShadowWidget.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Source/Kiddy/HUD/GameLevels/FindPairWidget.cpp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Source/Kiddy/HUD/GameLevels/FindPairWidget.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Source/Kiddy/HUD/KiddyMainMenu.cpp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Source/Kiddy/HUD/KiddyMainMenu.h" charset="UTF-8" />
+  </component>
 </project>
