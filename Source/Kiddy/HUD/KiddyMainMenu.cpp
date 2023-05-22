@@ -14,11 +14,6 @@ bool UKiddyMainMenu::Initialize()
 	/** Initialise main meni widgets and bing Callbacks*/
 	if(!ensure(SettingsButton)) return false;
 	SettingsButton->OnClicked.AddDynamic(this, &UKiddyMainMenu::OpenSettings);
-
-	/**
-	 * TODO: Make some dataTable with levels path and image,
-	 * TODO: and generate btns from it
-	 */
 	
 	if(!ensure(Levels1Button)) return false;
 	Levels1Button->OnClicked.AddDynamic(this, &UKiddyMainMenu::OpenLevel1);
@@ -49,6 +44,7 @@ void UKiddyMainMenu::ChangeSettingsVisibility()
 	else
 	{
 		SettingsWidget->SetVisibility(ESlateVisibility::Visible);
+		Cast<USettingsWidget>(SettingsWidget)->Init();
 	}
 }
 

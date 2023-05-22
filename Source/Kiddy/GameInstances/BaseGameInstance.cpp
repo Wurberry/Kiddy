@@ -101,7 +101,8 @@ void UBaseGameInstance::SetDarkMode(bool IsNeeded)
 		if(CurDateTime >= FDateTime(CurDateTime.GetYear(),CurDateTime.GetMonth(), CurDateTime.GetDay(),10)
 			|| CurDateTime <= FDateTime(CurDateTime.GetYear(),CurDateTime.GetMonth(), CurDateTime.GetDay()+1,7))
 		{
-			GetWorld()->GetTimerManager().SetTimer(TimerDarkMode,this, &UBaseGameInstance::BlockDarkMode, EyeProtectRateDuration, false);
+			GetWorld()->GetTimerManager().SetTimer(TimerDarkMode,this,
+				&UBaseGameInstance::BlockDarkMode, EyeProtectRateDuration, false);
 		}	
 	}
 	else
@@ -115,7 +116,8 @@ void UBaseGameInstance::SetEyeProtect(bool IsChecked)
 {
 	if(IsChecked)
 	{
-		GetWorld()->GetTimerManager().SetTimer(TimerOnEyeProtect,this, &UBaseGameInstance::BlockEyeProtect, EyeProtectRateDuration, false);
+		GetWorld()->GetTimerManager().SetTimer(TimerOnEyeProtect,this,
+			&UBaseGameInstance::BlockEyeProtect, EyeProtectRateDuration, false);
 	}
 	else
 	{

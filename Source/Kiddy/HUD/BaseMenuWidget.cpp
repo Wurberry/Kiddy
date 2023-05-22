@@ -33,7 +33,7 @@ void UBaseMenuWidget::Setup()
 
 void UBaseMenuWidget::Teardown()
 {
-	this->RemoveFromViewport();
+	this->RemoveFromParent();
 
 	const UWorld* World = GetWorld();
 	if(!ensure(World)) return;

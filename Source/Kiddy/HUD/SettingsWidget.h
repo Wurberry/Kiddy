@@ -25,6 +25,9 @@ public:
 
 	UFUNCTION()
 	void SetEyeProtectInstance(bool IsChecked);
+
+	UFUNCTION()
+	void Init();
 	
 	UPROPERTY(VisibleAnywhere, meta = (BindWidget))
 	UCheckBox* ChBEyeProtect;
@@ -42,3 +45,4 @@ protected:
 
 
 };
+

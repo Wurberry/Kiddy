@@ -8,10 +8,6 @@ void USettingsWidget::NativeConstruct()
 	Super::NativeConstruct();
 
 	CBColorBlinding->SetSelectedIndex(0);
-
-	ChBDarkMode->OnCheckStateChanged.AddDynamic(this, &USettingsWidget::SetDarkModeInstance);
-
-	ChBEyeProtect->OnCheckStateChanged.AddDynamic(this, &USettingsWidget::SetEyeProtectInstance);
 	
 }
 
@@ -25,3 +21,10 @@ void USettingsWidget::SetEyeProtectInstance(bool IsChecked)
 	Cast<UBaseGameInstance>(GetGameInstance())->SetEyeProtect(IsChecked);
 }
 
+void USettingsWidget::Init()
+{
+	ChBDarkMode->OnCheckStateChanged.Clear();
+	ChBEyeProtect->OnCheckStateChanged.Clear();
+	ChBDarkMode->OnCheckStateChanged.AddDynamic(this, &USettingsWidget::SetDarkModeInstance);
+	ChBEyeProtect->OnCheckStateChanged.AddDynamic(this, &USettingsWidget::SetEyeProtectInstance);
+}
